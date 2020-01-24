@@ -1,0 +1,61 @@
+/*!
+
+=========================================================
+* Paper Dashboard Angular - v2.0.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/paper-dashboard-angular
+* Copyright 2019 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard-angular/blob/master/LICENSE.md)
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
+
+@import 'trust-id/variables';
+@import 'trust-id/mixins';
+
+// Plugins CSS
+@import "trust-id/plugins/plugin-animate-bootstrap-notify";
+@import "trust-id/plugins/plugin-perfect-scrollbar";
+
+// Core CSS
+@import "trust-id/buttons";
+@import "trust-id/inputs";
+@import "trust-id/typography";
+@import "trust-id/misc";
+@import "trust-id/checkboxes-radio";
+
+
+// components
+@import "trust-id/navbar";
+@import "trust-id/page-header";
+@import "trust-id/dropdown";
+@import "trust-id/alerts";
+@import "trust-id/images";
+@import "trust-id/nucleo-outline";
+@import "trust-id/tables";
+@import "trust-id/sidebar-and-main-panel";
+@import "trust-id/footers";
+@import "trust-id/fixed-plugin";
+
+// cards
+@import "trust-id/cards";
+@import "trust-id/cards/card-plain";
+@import "trust-id/cards/card-chart";
+@import "trust-id/cards/card-user";
+@import "trust-id/cards/card-map";
+@import "trust-id/cards/card-stats";
+
+// angular differences
+@import "trust-id/angular/plugin-ngx-toastr";
+@import "trust-id/angular/sidebar-and-main-panel";
+@import "trust-id/angular/dropdown";
+@import "trust-id/angular/inputs";
+@import "trust-id/angular/fixed-plugin";
+
+@import "trust-id/responsive";
