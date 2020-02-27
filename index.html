@@ -1,0 +1,34 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #the-canvas {
+        border: 1px solid black;
+        direction: ltr;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.3.200/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.3.200/pdf.worker.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <input type="file" id="pdf-input" />
+    <canvas
+      id="the-canvas"
+      style="position: absolute; top: 50; left: 0"
+    ></canvas>
+    <canvas
+      id="rect-canvas"
+      style="position: absolute; top: 50; left: 0"
+    ></canvas>
+    <button
+      onclick="placeQrOnPdf()"
+      style="position: absolute; right: 0; top: 0; width: 100px; height: 100px"
+    >
+      TAMAM
+    </button>
+    <script src="index.js"></script>
+  </body>
+</html>
