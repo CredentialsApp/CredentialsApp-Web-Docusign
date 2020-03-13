@@ -23,11 +23,6 @@ var lastRectangleDrawn = {};
 
 onFileChanged();
 
-qr.addData("Hi!");
-qr.make();
-console.log(qr);
-const qrUrl = qr.createDataURL();
-
 function init(inputFile) {
   var loadingTask = pdfjsLib.getDocument(inputFile);
   loadingTask.promise.then(
@@ -71,6 +66,7 @@ function onPdfLoaded(pageNumber) {
     });
   });
 }
+
 function onPageRendered() {
   var canvasx = $(rectCanvas).offset().left;
   var canvasy = $(rectCanvas).offset().top;
@@ -165,8 +161,11 @@ function onPageRendered() {
 function placeQrOnPdf() {
   if (!lastRectangleDrawn) return;
 
+  qr.addData("Hi!");
+  qr.make();
+
   var imageObj = new Image();
-  imageObj.src = qrUrl;
+  imageObj.src = qr.createDataURL();
 
   imageObj.onload = function() {
     rectCanvasContext.clearRect(0, 0, rectCanvas.width, rectCanvas.height); //clear canvas
@@ -178,8 +177,18 @@ function placeQrOnPdf() {
   };
 }
 
+const toBase64 = file => {
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => resolve(reader.result);
+  reader.onerror = error => reject(error);
+};
+
 function onFileChanged() {
   var inputElement = document.getElementById("pdf-input");
+
+  // console.log(toBase64(inputElement));
+
   inputElement.onchange = function(event) {
     var file = event.target.files[0];
 
