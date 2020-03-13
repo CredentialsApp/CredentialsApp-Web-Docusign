@@ -12,8 +12,9 @@
   </head>
   <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.3.200/pdf.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.3.200/pdf.worker.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.3.200/pdf.worker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
     <input type="file" id="pdf-input" />
     <canvas
       id="the-canvas"
@@ -27,8 +28,9 @@
       onclick="placeQrOnPdf()"
       style="position: absolute; right: 0; top: 0; width: 100px; height: 100px"
     >
-      TAMAM
+      Ok
     </button>
+    <div id="placeHolder"></div>
     <script src="index.js"></script>
   </body>
 </html>

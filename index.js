@@ -5,6 +5,10 @@ var canvasContext;
 var rectCanvas;
 var rectCanvasContext;
 
+var typeNumber = 4;
+var errorCorrectionLevel = "L";
+var qr = qrcode(typeNumber, errorCorrectionLevel);
+
 var currPage = 1;
 var numPages = 0;
 
@@ -19,13 +23,18 @@ var lastRectangleDrawn = {};
 
 onFileChanged();
 
+qr.addData("Hi!");
+qr.make();
+console.log(qr);
+const qrUrl = qr.createDataURL();
+
 function init(inputFile) {
   var loadingTask = pdfjsLib.getDocument(inputFile);
   loadingTask.promise.then(
     function(pdf) {
       console.log("PDF loaded");
       loadedPdf = pdf;
-      
+
       numPages = pdf.numPages;
       onPdfLoaded(currPage);
     },
@@ -157,7 +166,7 @@ function placeQrOnPdf() {
   if (!lastRectangleDrawn) return;
 
   var imageObj = new Image();
-  imageObj.src = "qr.png";
+  imageObj.src = qrUrl;
 
   imageObj.onload = function() {
     rectCanvasContext.clearRect(0, 0, rectCanvas.width, rectCanvas.height); //clear canvas
