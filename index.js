@@ -8,6 +8,8 @@ var rectCanvasContext;
 var typeNumber = 4;
 var errorCorrectionLevel = "L";
 var qr = qrcode(typeNumber, errorCorrectionLevel);
+const privateSecret =
+  "4107E215B2E4907348E67E4B77FA7CC0DF1897DB342316520DBA5ED9CB0E1C1B";
 
 var currPage = 1;
 var numPages = 0;
@@ -23,7 +25,19 @@ var lastRectangleDrawn = {};
 
 onFileChanged();
 
+var pdfToBase64;
+
+function stringDecode(str) {
+  var arr1 = [];
+  for (var n = 0, l = str.length; n < l; n++) {
+    var hex = Number(str.charCodeAt(n)).toString(16);
+    arr1.push(hex);
+  }
+  return arr1.join("");
+}
+
 function init(inputFile) {
+  pdfToBase64 = inputFile;
   var loadingTask = pdfjsLib.getDocument(inputFile);
   loadingTask.promise.then(
     function(pdf) {
@@ -158,10 +172,24 @@ function onPageRendered() {
   });
 }
 
+function random32bit() {
+  let u = new Uint32Array(1);
+  window.crypto.getRandomValues(u);
+  let str = u[0].toString(16).toUpperCase();
+  return "00000000".slice(str.length) + str;
+}
+
 function placeQrOnPdf() {
   if (!lastRectangleDrawn) return;
+  const randomHash = random32bit();
+  const mainPdfhash = CryptoJS.SHA1(pdfToBase64);
+  const qrcodeHash = mainPdfhash + randomHash + "signature";
 
-  qr.addData("Hi!");
+  var encryptedPdfFile = CryptoJS.HmacSHA256(
+    qrcodeHash,
+    privateSecret
+  ).toString();
+  qr.addData(encryptedPdfFile);
   qr.make();
 
   var imageObj = new Image();
