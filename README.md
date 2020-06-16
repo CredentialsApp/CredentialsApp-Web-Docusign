@@ -1,3 +1,3 @@
-# trustid-docusign
+# credentialsapp-docusign
 
-TrustId Docusign Application
+Credentials App Docusign Application
